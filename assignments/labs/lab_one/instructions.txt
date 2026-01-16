@@ -7,4 +7,4 @@ Lab One Instructions:
 6.) Add a multi-line comment in index.php reflecting on which parts of the lab you found easy and which parts were challening. (/2 marks)
 7.) Congrats! All done! Add me as a collaborator to your repository (username: JessicaGilfilan) and submit a github link to your completed lab on Blackboard. (/2 marks)
 
-/16 marks 
+16/16 marks 
