@@ -15,6 +15,13 @@
     $stmt = $pdo->prepare($sql);
     $stmt->bindParam(':taskName', $_POST['taskName']);
     $stmt->bindParam(':taskPriority', $_POST['taskPriority']);
+    if ($_POST['taskTime'] <= 0) {
+        echo "<p>Task time must be a positive integer. Please go back and enter a valid task time.</p>
+        <p>You will be redirected to the homepage in 3 seconds.</p>
+        <p>If you are not redirected, click <a href='../index.php'>here</a>.</p>";
+        header("refresh:3;url=../index.php");
+        exit;
+    }
     $stmt->bindParam(':taskTime', $_POST['taskTime']);
     $stmt->bindParam(':taskId', $taskId);
     $stmt->execute();

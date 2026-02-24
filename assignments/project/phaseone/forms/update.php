@@ -31,7 +31,7 @@
         <label for='taskName'>Task name</label>
         <input type='text' id='taskName' name='taskName' class='form-control' value='<?= htmlspecialchars($tasks['task_name']); ?>' required>
         <label for='taskPriority'>select Task priority (low, medium, high)</label>
-        <select id='taskPriority' name='taskPriority' class='form-select'>
+        <select id='taskPriority' name='taskPriority' class='form-select' required>
             <!-- ?if and :else statements to set selected option based on current task priority -->
              <!-- < ?= Condition ? do_if_true : do_if_false ; ?> -->
             <option value='low' <?= $tasks['task_priority'] == 'low' ? 'selected' : ''; ?>>Low</option>
@@ -39,7 +39,7 @@
             <option value='high' <?= $tasks['task_priority'] == 'high' ? 'selected' : ''; ?>>High</option>
         </select>
         <label for='taskTIme'>Time spent on task (in minutes)</label>
-        <input type='number' id='taskTime' name='taskTime' class='form-control' value='<?= htmlspecialchars($tasks['task_time']); ?>' required>
+        <input type='number' id='taskTime' name='taskTime' class='form-control' value='<?= htmlspecialchars($tasks['task_time']); ?>' required min='1'>
     </fieldset>
     <button type='submit' class='btn btn-primary'>Update Info</button>
     <a href="../index.php" class='btn'>Back to homepage</button>
