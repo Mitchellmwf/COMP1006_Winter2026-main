@@ -1,5 +1,5 @@
 <form action='forms/processAdd.php' method='post'>
-
+    <legend>Create Task</legend>
     <label for='taskName'>Task name</label>
     <input type='text' id='taskName' name='taskName' class='form-control'>
     <label for='taskPriority'>select Task priority (low, medium, high)</label>

@@ -1,7 +1,26 @@
-<form>
-    <legend>Would you like to delete by id or name?</legend>
-    <input type="radio" id="id" name="deleteMode" value="id" onchange="this.form.submit();">
-    <label for="id">Delete by id</label><br>
-    <input type="radio" id="name" name="deleteMode" value="name" onchange="this.form.submit();">
-    <label for="name">Delete by name</label><br>
-</form>
+<?php 
+    require '../includes/header.php';
+    $taskId = $_GET['task_id'];
+    if (empty($taskId) || $taskId <= 0) {
+        echo "<p>Invalid task ID. Please go back and try again.</p><p>You will be redirected to the homepage in 3 seconds.</p>
+        <p>If you are not redirected, click <a href='../index.php'>here</a>.</p>";
+        header("refresh:3;url=../index.php");
+        exit;
+    }
+
+    //connect to database
+    require "../includes/connect.php";
+
+    //delete the task using a prepared statement
+    $sql = "DELETE FROM active_tasks WHERE task_id = :taskId";
+    $stmt = $pdo->prepare($sql);
+    $stmt->bindParam(':taskId', $taskId);
+    $stmt->execute();
+    //close connection
+    $pdo = null;
+    
+    //confirmation message
+    echo "<h1>Deleted!</h1>
+    <p>The task has been deleted from the database.</p>";
+    //redirect to index after 3 seconds
+    header("refresh:3;url=../index.php");

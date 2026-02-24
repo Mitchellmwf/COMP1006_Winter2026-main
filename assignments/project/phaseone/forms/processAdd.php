@@ -35,7 +35,7 @@
     require "../includes/connect.php";
 
     //set up the query used named placeholders
-    $sql = "INSERT INTO active_tasks(task_id, task_name, task_priority, task_time) VALUES (null, :taskName, :taskPriority, :taskTime);";
+    $sql = "INSERT INTO active_tasks(task_id, task_name, task_priority, task_time, task_date) VALUES (null, :taskName, :taskPriority, :taskTime, now() );";
         //task_id will auto increment
 
     //prepare the query 
