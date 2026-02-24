@@ -32,6 +32,7 @@
         </thead>
 
         <tbody>
+            <!-- Loop through orders and show in table -->
             <?php foreach ($tasks as $task): ?>
                 <tr>
                 <td><?= htmlspecialchars($task['task_id']); ?></td>
@@ -42,13 +43,13 @@
                 <td>
                     <a
                     class="btn btn-sm btn-warning"
-                    href="update.php?id=<?= urlencode($task['task_id']); ?>">
+                    href="forms/update.php?id=<?= urlencode($task['task_id']); ?>">
                     Update
                     </a>
             </br>
                     <a
                     class="btn btn-sm btn-danger mt-2"
-                    href="forms/delete.php?task_id=<?= urlencode($task['task_id']); ?>"
+                    href="forms/processDelete.php?task_id=<?= urlencode($task['task_id']); ?>"
                     onclick="return confirm('Are you sure you want to delete this order?');">
                     Delete
                     </a>

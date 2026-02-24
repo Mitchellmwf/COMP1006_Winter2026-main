@@ -2,7 +2,14 @@
     <legend>Update Task</legend>
 
 <?php 
-    //get task id from url
+    //Grab and ensure task_id is valid
+    $taskId = $_GET['id'];
+    if (empty($taskId) || $taskId <= 0) {
+        echo "<p>Invalid task ID. Please go back and try again.</p><p>You will be redirected to the homepage in 3 seconds.</p>
+        <p>If you are not redirected, click <a href='../index.php'>here</a>.</p>";
+        header("refresh:3;url=../index.php");
+        exit;
+    }
 
 
 

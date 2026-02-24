@@ -11,7 +11,9 @@
         <label for="display">Display tasks</label>
     </fieldset>
 </form>
+
 <?php
+//If a value is selected, attach the corresponding form to the page
     if (isset($_POST['menuMode'])) {
         if ($_POST['menuMode'] == 'add') {
             require 'forms/add.php';

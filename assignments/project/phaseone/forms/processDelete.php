@@ -1,5 +1,6 @@
 <?php 
     require '../includes/header.php';
+    //Grab and ensure task_id is valid
     $taskId = $_GET['task_id'];
     if (empty($taskId) || $taskId <= 0) {
         echo "<p>Invalid task ID. Please go back and try again.</p><p>You will be redirected to the homepage in 3 seconds.</p>
@@ -22,5 +23,7 @@
     //confirmation message
     echo "<h1>Deleted!</h1>
     <p>The task has been deleted from the database.</p>";
+    echo "<p>You will be redirected to the homepage in 3 seconds.</p>
+    <p>If you are not redirected, click <a href='../index.php'>here</a>.</p>";
     //redirect to index after 3 seconds
     header("refresh:3;url=../index.php");
