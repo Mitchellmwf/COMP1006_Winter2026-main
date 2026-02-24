@@ -10,7 +10,7 @@
     <link href="styles/main.css" rel="stylesheet">
 </head>
 
-<body>
+<body style="margin: 20px;">
     <header>
         <h1>Time tracker pro</h1>
     </header>

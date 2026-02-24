@@ -3,10 +3,10 @@
 ?>
 
 <form action="" method="post">
+    <legend>What would you like to do today?</legend>
     <fieldset id='options'>
-        <legend>What would you like to do today?</legend>
-        <input type="radio" id="add" name="menuMode" value="add" onchange="this.form.submit();">
-        <label for="add">Create task</label><br>
+        <input type="radio" id="add" name="menuMode" value="add" onchange="this.form.submit();" >
+        <label for="add">Create task</label><br>   
         <input type="radio" id="display" name="menuMode" value="display" onchange="this.form.submit();">
         <label for="display">Display tasks</label>
     </fieldset>

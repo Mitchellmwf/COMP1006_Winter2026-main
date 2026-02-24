@@ -3,7 +3,7 @@
     require "./includes/connect.php";
 
     // Get all orders (newest first)
-    $sql = "SELECT * FROM active_tasks ORDER BY task_priority DESC";
+    $sql = "SELECT * FROM active_tasks ORDER BY FIELD(task_priority, 'high', 'medium', 'low'), task_date DESC, task_time asc";
     $stmt = $pdo->prepare($sql);
     $stmt->execute();
     $tasks = $stmt->fetchAll();
@@ -40,7 +40,7 @@
                 <td><?= htmlspecialchars($task['task_priority']); ?></td>
                 <td><?= htmlspecialchars($task['task_time']); ?></td>
                 <td><?= htmlspecialchars($task['task_date']); ?></td>
-                <td>
+                <td>        
                     <a
                     class="btn btn-sm btn-warning"
                     href="forms/update.php?task_id=<?= urlencode($task['task_id']); ?>">

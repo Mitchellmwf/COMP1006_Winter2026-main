@@ -1,0 +1,3 @@
+I did get bump into a few hurdles here and there, but nothing much of particular note. Things I could've done is used JS for the form that lets you switch between display and create.
+
+Something I'd like to try next time is having the webapp that can see, create, and edit DBs, tables, columns. With what we've learned in relational DBs, I imagine it would be quite doable.
