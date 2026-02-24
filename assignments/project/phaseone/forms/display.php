@@ -43,7 +43,7 @@
                 <td>
                     <a
                     class="btn btn-sm btn-warning"
-                    href="forms/update.php?id=<?= urlencode($task['task_id']); ?>">
+                    href="forms/update.php?task_id=<?= urlencode($task['task_id']); ?>">
                     Update
                     </a>
             </br>

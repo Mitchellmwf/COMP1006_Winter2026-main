@@ -1,4 +1,4 @@
-<?php
+<?php   
     //Grab and ensure task_id is valid
     $taskId = $_GET['task_id'];
     if (empty($taskId) || $taskId <= 0) {
@@ -10,19 +10,21 @@
 
     //connect to database
     require "../includes/connect.php";
-
-    //delete the task using a prepared statement
-    $sql = "DELETE FROM active_tasks WHERE task_id = :taskId";
+    //update the task using a prepared statement
+    $sql = "UPDATE active_tasks SET task_name = :taskName, task_priority = :taskPriority, task_time = :taskTime WHERE task_id = :taskId";
     $stmt = $pdo->prepare($sql);
+    $stmt->bindParam(':taskName', $_POST['taskName']);
+    $stmt->bindParam(':taskPriority', $_POST['taskPriority']);
+    $stmt->bindParam(':taskTime', $_POST['taskTime']);
     $stmt->bindParam(':taskId', $taskId);
     $stmt->execute();
-    //close connection
     $pdo = null;
-    
+
     //confirmation message
-    echo "<h1>Deleted!</h1>
-    <p>The task has been deleted from the database.</p>";
+    echo "<h1>Updated!</h1>
+    <p>The task has been updated in the database.</p>";
     echo "<p>You will be redirected to the homepage in 3 seconds.</p>
     <p>If you are not redirected, click <a href='../index.php'>here</a>.</p>";
     //redirect to index after 3 seconds
     header("refresh:3;url=../index.php");
+    ?>
