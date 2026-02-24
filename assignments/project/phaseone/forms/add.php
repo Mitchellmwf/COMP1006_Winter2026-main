@@ -1,4 +1,4 @@
-<form action='forms/formConfirm.php' method='post'>
+<form action='forms/processAdd.php' method='post'>
 
     <label for='taskName'>Task name</label>
     <input type='text' id='taskName' name='taskName' class='form-control'>
