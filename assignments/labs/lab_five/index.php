@@ -6,7 +6,7 @@
     <meta charset="UTF-8">
     <title>Lab 5</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
-    <link href="styles/main.css" rel="stylesheet">
+    <link href="./styles/main.css" rel="stylesheet">
 </head>
 <body>
     <h1>Upload File</h1>
@@ -49,7 +49,7 @@
                 //Check if the file uploaded successfully and move it to the destination
                 if (move_uploaded_file($_FILES['image']['tmp_name'], $destination)) {
                     // Save the relative path to the image for storing in the database
-                    $imagePath = 'uploads/' . $safeFilename;
+                    $imagePath = 'image stored in uploads directory successfully.';
                 } else {
                     $errors[] = 'Failed to move uploaded image.';
                 }
@@ -66,7 +66,7 @@
         }
         echo '</ul></div>';
     elseif (isset($imagePath)): 
-        echo '</br><div class="alert alert-success"><h3>Image uploaded successfully!</h3><p>File path: ' . htmlspecialchars($imagePath) . '</p></div>';
+        echo '</br><div class="alert alert-success"><h3>Image uploaded successfully!</h3></div>';
     endif;
 
 
