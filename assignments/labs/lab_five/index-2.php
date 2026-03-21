@@ -15,9 +15,17 @@
         <input type="file" name="image" class="form-control mb-4" required>
         <input type="submit" value="Upload" class="btn btn-primary">
     </form>
-
+</body>
 
 <?php
+    //This code is a copy of index.php but instead of storing the uploaded image in the uploads directory, 
+    // it stores the image as a blob in the database and then displays all images store in it. 
+
+
+
+
+
+
     $errors = [];
      // Check if an image was uploaded
     if (isset($_FILES['image']) && $_FILES['image']['error'] !== UPLOAD_ERR_NO_FILE ){
@@ -39,20 +47,24 @@
                 $errors[] = 'Image size exceeds 20MB limit.';
             }
             else {
-                // Build the file name and move it to the uploads directory
-                // get the file extension
+                // If the file is valid, read its contents and prepare it for database storage
                 $extension = pathinfo($_FILES['image']['name'], PATHINFO_EXTENSION);
-                // create a unique file name so uploaded files don't overwrite each other
+                $imageData = file_get_contents($_FILES['image']['tmp_name']);
                 $safeFilename = uniqid('image_', true) . '.' . strtolower($extension);
-                //Build the full server path where the file will be stored
-                $destination = __DIR__ . '/uploads/' . $safeFilename;
-                //Check if the file uploaded successfully and move it to the destination
-                if (move_uploaded_file($_FILES['image']['tmp_name'], $destination)) {
-                    // Save the relative path to the image for storing in the database
-                    $imagePath = 'uploads/' . $safeFilename;
+                // Connect to the database
+                $pdo = new PDO('mysql:host=localhost;dbname=Mitchell200636138', 'root', '');
+                // Prepare and execute the insert statement
+                $stmt = $pdo->prepare('INSERT INTO uploads (image_name, image_bin, mime_type) VALUES (:name, :data, :mime_type)');
+                $stmt->bindValue(':name', $safeFilename, PDO::PARAM_STR);
+                $stmt->bindValue(':data', $imageData, PDO::PARAM_LOB);
+                $stmt->bindValue(':mime_type', $extension, PDO::PARAM_STR);
+                if ($stmt->execute()) {
+                    $imagePath = 'Image stored in database successfully.';
                 } else {
-                    $errors[] = 'Failed to move uploaded image.';
+                    $errors[] = 'Failed to store image in database.';
                 }
+                // Close the database connection
+                $pdo = null;
             }
         }
     }
@@ -70,20 +82,26 @@
     endif;
 
 
-    // Display all uploaded images https://www.tutorialspoint.com/article/get-all-the-images-from-a-folder-in-php
-    $uploads = glob(__DIR__ . '/uploads/*.{jpg,jpeg,png,webp}', GLOB_BRACE);
-    if (!empty($uploads)) {
-        echo '<h2 class="mt-5">Uploaded Images:</h2><div class="row">';
-        foreach ($uploads as $image) {
-            $relativePath = 'uploads/' . basename($image);
-            echo '<div style="max-width: 30vw; max-height: 40vh; margin: 10px; justify-content: center;">';
-            echo '<img src="' . htmlspecialchars($relativePath) . '">';
+    // Display all uploaded images store as blob in MySQL database https://stackoverflow.com/questions/2070603/php-recreate-and-display-an-image-from-binary-data
+    // Connect to the database
+    $pdo = new PDO('mysql:host=localhost;dbname=Mitchell200636138', 'root', '');
+    // Fetch all images from the database
+    $stmt = $pdo->query('SELECT image_name, image_bin, mime_type FROM uploads');
+    $images = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    // Display the images
+    if (!empty($images)):
+        echo '<h2 class="mt-5">Uploaded Images</h2><div class="row">';
+        foreach ($images as $image) {
+            $base64 = base64_encode($image['image_bin']);
+            $src = 'data:image/'. $image["mime_type"] . ';base64,' . $base64;
+            echo '<div style="max-width: fit-content; max-height: fit-content; margin: 10px; justify-content: center;">';
+            echo '<img src="' . $src . '">';
             echo '</div>';
+
         }
         echo '</div>';
-    } else {
-        echo '<p>No images uploaded yet.</p>';
-    }
+    endif;
+    $pdo = null; // Close the database connection
 
 
 

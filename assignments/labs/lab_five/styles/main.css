@@ -1,5 +1,4 @@
 body {
-    width: 50%;
     margin: auto;
     padding-top: 10vh;
 }
@@ -7,3 +6,13 @@ body {
 body * {
     text-align: center;
 }
+img {
+    max-width: 30vw;
+    max-height: 40vh;
+    margin: 10px;
+}
+form {
+    justify-self: center;
+    width: 60%;
+}
+
