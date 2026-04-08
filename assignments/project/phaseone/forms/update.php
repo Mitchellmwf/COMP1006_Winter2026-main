@@ -6,8 +6,8 @@
     $taskId = $_GET['task_id'];
     if (empty($taskId) || $taskId < 0) {
         echo "<p>Invalid task ID. Please go back and try again.</p><p>You will be redirected to the homepage in 3 seconds.</p>
-        <p>If you are not redirected, click <a href='../index.php'>here</a>.</p>";
-        header("refresh:3;url=../index.php");
+        <p>If you are not redirected, click <a href='../controls.php'>here</a>.</p>";
+        header("refresh:3;url=../controls.php");
         exit;
     }
 
@@ -42,7 +42,7 @@
         <input type='number' id='taskTime' name='taskTime' class='form-control' value='<?= htmlspecialchars($tasks['task_time']); ?>' required min='1'>
     </fieldset>
     <button type='submit' class='btn btn-primary'>Update Info</button>
-    <a href="../index.php" class='btn'>Back to homepage</button>
+    <a href="../controls.php" class='btn'>Back to homepage</button>
     <a href="processDelete.php?task_id=<?= urlencode($tasks['task_id']); ?>" class='btn btn-danger' onclick="return confirm('Are you sure you want to delete this order?');">Delete Task</button>
 </form>
 </body>

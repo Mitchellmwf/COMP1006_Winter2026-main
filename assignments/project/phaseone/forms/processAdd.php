@@ -9,15 +9,15 @@
     //validate taskPriority input
     if (!in_array($taskPriority, ['low', 'medium', 'high'])) {
         echo "<p>Invalid task priority. Please go back and select a valid priority.</p><p>You will be redirected to the homepage in 3 seconds.</p>
-        <p>If you are not redirected, click <a href='../index.php'>here</a>.</p>";
-        header("refresh:3;url=../index.php");
+        <p>If you are not redirected, click <a href='../controls.php'>here</a>.</p>";
+        header("refresh:3;url=../controls.php");
         exit;
     }
     //make sure taskName is not empty
     if (empty($taskName) || $taskName == '' || $taskName == null) {
         echo "<p>Task name cannot be empty. Please go back and enter a task name.</p><p>You will be redirected to the homepage in 3 seconds.</p>
-        <p>If you are not redirected, click <a href='../index.php'>here</a>.</p>";
-        header("refresh:3;url=../index.php");
+        <p>If you are not redirected, click <a href='../controls.php'>here</a>.</p>";
+        header("refresh:3;url=../controls.php");
         exit;
     }
 
@@ -25,8 +25,8 @@
     if ($taskTime <= 0) {
         echo "<p>Task time must be a positive integer. Please go back and enter a valid task time.</p>
         <p>You will be redirected to the homepage in 3 seconds.</p>
-        <p>If you are not redirected, click <a href='../index.php'>here</a>.</p>";
-        header("refresh:3;url=../index.php");
+        <p>If you are not redirected, click <a href='../controls.php'>here</a>.</p>";
+        header("refresh:3;url=../controls.php");
         exit;
     }
 
@@ -57,8 +57,8 @@
     <p>Your task has been added to the database.</p>";
 
     echo "<p>You will be redirected to the homepage in 3 seconds.</p>
-    <p>If you are not redirected, click <a href='../index.php'>here</a>.</p>";
+    <p>If you are not redirected, click <a href='../controls.php'>here</a>.</p>";
 
-    //redirect to index after 3 seconds
-    header("refresh:3;url=../index.php");
+    //redirect to controls after 3 seconds
+    header("refresh:3;url=../controls.php");
     ?>
