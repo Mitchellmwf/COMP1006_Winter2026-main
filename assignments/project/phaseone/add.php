@@ -1,8 +1,8 @@
 <?php
-    require "../includes/header.php";
+    require "./includes/header.php";
 
 ?>
-<form action='processAdd.php' method='post'>
+<form action='./processAdd.php' method='post'>
     <legend>Create Task</legend>
     <label for='taskName'>Task name</label>
     <input type='text' id='taskName' name='taskName' class='form-control' require value='test1'>

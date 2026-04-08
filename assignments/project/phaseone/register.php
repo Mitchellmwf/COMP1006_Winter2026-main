@@ -1,9 +1,9 @@
 <?php
 // Include the database connection so we can interact with the users table
-require "includes/connect.php";
+require "./includes/connect.php";
 
 // Include the site header (navigation, Bootstrap, etc.)
-require "includes/header.php";
+require "./includes/header.php";
 
 // Array to store validation errors
 $errors = [];
@@ -144,7 +144,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <?= htmlspecialchars($success); ?>
             <br>
             <!-- Provide a link to the login page -->
-            <a href="login.php" class="btn btn-sm btn-success mt-2">Go to Login</a>
+            <a href="./login.php" class="btn btn-sm btn-success mt-2">Go to Login</a>
         </div>
     <?php endif; ?>
 
@@ -197,7 +197,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <button type="submit" class="btn btn-primary">Create Account</button>
 
         <!-- Link to login page -->
-        <a href="login.php" class="btn btn-secondary">Login Instead</a>
+        <a href="./login.php" class="btn btn-secondary">Login Instead</a>
     </form>
 </main>
 

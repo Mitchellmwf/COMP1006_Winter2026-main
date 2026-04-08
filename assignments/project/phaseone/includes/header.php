@@ -19,7 +19,7 @@
         <h1><a href="./index.php" style="color: black;">Time Tracker Pro</a></h1> 
         <?php if (isset($_SESSION['username'])): ?>
             <div style="margin-left: auto; display: flex; align-items: center;">
-                <a href="./account.php" ><img src="./profiles/<?= htmlspecialchars($_SESSION['profile_image'] ?? 'default.jpg'); ?>" alt="Profile Image" style="width: 40px; height: 40px; margin-right: 10px;"></a>
+                <a href="./account.php" ><img src="<?= htmlspecialchars($_SESSION['profile_image_path'] ?? './profiles/default.jpg'); ?>" alt="Profile Settings" style="width: 40px; height: 40px; margin-right: 10px;"></a>
                 <a href="./controls.php" class="btn btn-info me-2" style="width: 5em; height: 2.6em;">Admin</a>
                 <a href="./logout.php" class="btn btn-danger" style="width: 6em; height: 2.6em;">Log out</a>
             </div>

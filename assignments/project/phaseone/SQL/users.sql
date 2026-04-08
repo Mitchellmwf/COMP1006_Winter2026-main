@@ -8,5 +8,6 @@ CREATE TABLE task_users (
   `email` varchar(255) NOT NULL unique,
   `username` varchar(50) NOT NULL unique,
   `password` varchar(255) NOT NULL,
-  `profile_image` varchar(255) DEFAULT NULL
+  `profile_image` varchar(255) DEFAULT NULL,
+  `image_type` varchar(50) DEFAULT NULL
 );

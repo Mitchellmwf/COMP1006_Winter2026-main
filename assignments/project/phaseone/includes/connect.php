@@ -1,8 +1,8 @@
 <?php 
 $host = "localhost"; //hostname
-$db = "mitchell200636138"; //database name
-$user = "root"; //username
-$password = ""; //password
+$db = "Mitchell200636138"; //database name
+$user = "Mitchell200636138"; //username
+$password = "PdnkSpwQdZ"; //password
 
 //points to the database
 $dsn = "mysql:host=$host;dbname=$db";

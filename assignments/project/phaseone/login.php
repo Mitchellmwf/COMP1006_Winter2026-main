@@ -1,5 +1,4 @@
 <?php
-session_start();
 require "includes/connect.php";
 require "includes/header.php";
 
@@ -12,7 +11,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if ($usernameOrEmail === '' || $password === '') {
         $error = "Username/email and password are required.";
     } else {
-        $sql = "SELECT user_id, username, email, password
+        $sql = "SELECT user_id, username, email, password, profile_image
                 FROM task_users
                 WHERE username = :login OR email = :login
                 LIMIT 1";
@@ -28,9 +27,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $_SESSION['user_id'] = $user['user_id'];
             $_SESSION['username'] = $user['username'];
             $_SESSION['email'] = $user['email'];
-            $_SESSION['profile_image'] = $user['profile_image'] ?? null;
+            $_SESSION['profile_image_path'] = $user['profile_image'] ?? './profiles/default.jpg';
 
-            header("Location: controls.php");
+            header("Location: ./controls.php");
             exit;
         } else {
             $error = "Invalid credentials. Please try again.";
@@ -68,6 +67,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         >
 
         <button type="submit" class="btn btn-primary">Login</button>
-        <a href="register.php" class="btn btn-secondary">Create Account</a>
+        <a href="./register.php" class="btn btn-secondary">Create Account</a>
     </form>
 </main>

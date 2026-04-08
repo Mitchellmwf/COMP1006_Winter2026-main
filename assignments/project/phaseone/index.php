@@ -1,6 +1,6 @@
 
 <?php 
-    require "includes/header.php";
+    require "./includes/header.php";
     //connect to database
     require "./includes/connect.php";
 

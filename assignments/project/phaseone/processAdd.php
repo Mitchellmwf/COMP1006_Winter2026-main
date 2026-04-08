@@ -9,15 +9,15 @@
     //validate taskPriority input
     if (!in_array($taskPriority, ['low', 'medium', 'high'])) {
         echo "<p>Invalid task priority. Please go back and select a valid priority.</p><p>You will be redirected to the homepage in 3 seconds.</p>
-        <p>If you are not redirected, click <a href='../controls.php'>here</a>.</p>";
-        header("refresh:3;url=../controls.php");
+        <p>If you are not redirected, click <a href='./controls.php'>here</a>.</p>";
+        header("refresh:3;url=./controls.php");
         exit;
     }
     //make sure taskName is not empty
     if (empty($taskName) || $taskName == '' || $taskName == null) {
         echo "<p>Task name cannot be empty. Please go back and enter a task name.</p><p>You will be redirected to the homepage in 3 seconds.</p>
-        <p>If you are not redirected, click <a href='../controls.php'>here</a>.</p>";
-        header("refresh:3;url=../controls.php");
+        <p>If you are not redirected, click <a href='./controls.php'>here</a>.</p>";
+        header("refresh:3;url=./controls.php");
         exit;
     }
 
@@ -25,14 +25,14 @@
     if ($taskTime <= 0) {
         echo "<p>Task time must be a positive integer. Please go back and enter a valid task time.</p>
         <p>You will be redirected to the homepage in 3 seconds.</p>
-        <p>If you are not redirected, click <a href='../controls.php'>here</a>.</p>";
-        header("refresh:3;url=../controls.php");
+        <p>If you are not redirected, click <a href='./controls.php'>here</a>.</p>";
+        header("refresh:3;url=./controls.php");
         exit;
     }
 
     /* INSERT THE ORDER USING A PREPARED STATEMENT*/
     //connect to database
-    require "../includes/connect.php";
+    require "./includes/connect.php";
 
     //set up the query used named placeholders
     $sql = "INSERT INTO active_tasks(task_id, task_name, task_priority, task_time, task_date) VALUES (null, :taskName, :taskPriority, :taskTime, now() );";
@@ -57,8 +57,8 @@
     <p>Your task has been added to the database.</p>";
 
     echo "<p>You will be redirected to the homepage in 3 seconds.</p>
-    <p>If you are not redirected, click <a href='../controls.php'>here</a>.</p>";
+    <p>If you are not redirected, click <a href='./controls.php'>here</a>.</p>";
 
     //redirect to controls after 3 seconds
-    header("refresh:3;url=../controls.php");
+    header("refresh:3;url=./controls.php");
     ?>
