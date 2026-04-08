@@ -21,6 +21,18 @@ $success = "";
 // This ensures the registration logic only runs when the form is submitted
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
+    // reCAPTCHA validation
+    $recaptchaSecret = '6Lc52q0sAAAAAIrTXwjPcZt5lB3pMOzabNOdPIdV';
+    $recaptchaToken = $_POST['g-recaptcha-response'] ?? '';
+    
+    $recaptchaResponse = file_get_contents("https://www.google.com/recaptcha/api/siteverify?secret={$recaptchaSecret}&response={$recaptchaToken}");
+    $recaptchaData = json_decode($recaptchaResponse, true);
+
+    if (!$recaptchaData['success'] || $recaptchaData['score'] < 0.5) {
+        $errors[] = "reCAPTCHA verification failed. Please try again.";
+    }
+    
+
     // Retrieve and sanitize the username from the form
     // filter_input helps clean user input
     $username = trim(filter_input(INPUT_POST, 'username', FILTER_SANITIZE_SPECIAL_CHARS));
@@ -154,7 +166,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 
     <!-- Registration form -->
-    <form method="post" class="mt-3">
+    <form method="post" class="mt-3" id="register-form">
 
         <!-- Username input -->
         <label for="username" class="form-label">Username</label>
@@ -199,10 +211,20 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         >
 
         <!-- Submit button -->
-        <button type="submit" class="btn btn-primary">Create Account</button>
+        <button class="g-recaptcha btn btn-primary"
+            data-sitekey="6Lc52q0sAAAAAAWnq8PbAmWmXuA2LZ4Ma9fhJ8Bx"
+            data-callback="onSubmit"
+            data-action="submit">Create Account
+        </button>
 
         <!-- Link to login page -->
         <a href="./login.php" class="btn btn-secondary">Login Instead</a>
+        <script src="https://www.google.com/recaptcha/api.js"></script>
+        <script>
+            function onSubmit(token) {
+                document.getElementById("register-form").submit();
+            }
+        </script>
     </form>
 </main>
 
