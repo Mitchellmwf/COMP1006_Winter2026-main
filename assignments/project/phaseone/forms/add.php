@@ -1,4 +1,8 @@
-<form action='forms/processAdd.php' method='post'>
+<?php
+    require "../includes/header.php";
+
+?>
+<form action='processAdd.php' method='post'>
     <legend>Create Task</legend>
     <label for='taskName'>Task name</label>
     <input type='text' id='taskName' name='taskName' class='form-control' require value='test1'>
@@ -13,8 +17,3 @@
 
     <button type="submit" class="btn btn-primary">Update Info</button>
 </form>
-
-<?php
-
-
-?>

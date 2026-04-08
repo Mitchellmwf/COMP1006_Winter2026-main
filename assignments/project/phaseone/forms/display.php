@@ -12,7 +12,10 @@
     $pdo = null;
 ?>
 
-<h2>Orders (Admin)</h2>
+<div style="display: flex; flex-direction: row;">
+    <h2>Orders (Admin)</h2>
+    <a href="forms/add.php" class="btn btn-success ms-auto" style="height: 2.6em;">Add Task</a>
+</div>
 
 <?php if (empty($tasks)){
     echo "<p>No Tasks yet.</p>";} ?>
@@ -43,13 +46,13 @@
                 <td>        
                     <a
                     class="btn btn-sm btn-warning"
-                    href="forms/update.php?task_id=<?= urlencode($task['task_id']); ?>">
+                    href="update.php?task_id=<?= urlencode($task['task_id']); ?>">
                     Update
                     </a>
             </br>
                     <a
                     class="btn btn-sm btn-danger mt-2"
-                    href="forms/processDelete.php?task_id=<?= urlencode($task['task_id']); ?>"
+                    href="processDelete.php?task_id=<?= urlencode($task['task_id']); ?>"
                     onclick="return confirm('Are you sure you want to delete this order?');">
                     Delete
                     </a>
