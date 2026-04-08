@@ -4,6 +4,13 @@ require "includes/header.php";
 
 $error = "";
 
+//if the user is already logged in, redirect them to the controls page
+if (isset($_SESSION['username'])) {
+    header("Location: ./controls.php");
+    exit;
+}
+
+// Check if the form was submitted using POST
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $usernameOrEmail = trim($_POST['username_or_email'] ?? '');
     $password = $_POST['password'] ?? '';

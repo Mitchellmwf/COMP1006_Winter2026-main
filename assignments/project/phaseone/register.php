@@ -5,6 +5,12 @@ require "./includes/connect.php";
 // Include the site header (navigation, Bootstrap, etc.)
 require "./includes/header.php";
 
+//if the user is already logged in, redirect them to the controls page
+if (isset($_SESSION['username'])) {
+    header("Location: ./controls.php");
+    exit;
+}
+
 // Array to store validation errors
 $errors = [];
 
@@ -116,8 +122,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         // Execute the insert query
         $stmt->execute();
 
-        // Set a success message
-        $success = "Account created successfully. You can now log in.";
+        // Log the user in by starting a session and storing their info
+        $_SESSION['user_id'] = $pdo->lastInsertId();
+        $_SESSION['username'] = $username;
+        $_SESSION['email'] = $email;
+        $_SESSION['profile_image_path'] = './profiles/default.jpg';
+
+        // Redirect the user to the controls page after successful registration
+        header("Location: ./controls.php");
+        
     }
 }
 ?>
@@ -138,15 +151,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         </div>
     <?php endif; ?>
 
-    <!-- Display success message if account creation succeeded -->
-    <?php if ($success !== ""): ?>
-        <div class="alert alert-success">
-            <?= htmlspecialchars($success); ?>
-            <br>
-            <!-- Provide a link to the login page -->
-            <a href="./login.php" class="btn btn-sm btn-success mt-2">Go to Login</a>
-        </div>
-    <?php endif; ?>
+
 
     <!-- Registration form -->
     <form method="post" class="mt-3">
