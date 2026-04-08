@@ -1,6 +1,6 @@
 <?php 
 $host = "localhost"; //hostname
-$db = "tasks_db"; //database name
+$db = "mitchell200636138"; //database name
 $user = "root"; //username
 $password = ""; //password
 

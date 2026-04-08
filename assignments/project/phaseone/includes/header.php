@@ -11,6 +11,6 @@
 </head>
 
 <body style="margin: 20px;">
-    <header>
+    <header style="margin-bottom: 20px; border-bottom: 2px solid #999; padding-bottom: 10px;" >
         <h1>Time tracker pro</h1>
     </header>
