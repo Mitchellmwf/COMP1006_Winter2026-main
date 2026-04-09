@@ -86,14 +86,30 @@
         if (empty($errors) && ($username !== $_SESSION['username'] || $email !== $_SESSION['email'])) {
 
             // SQL query to check for existing username or email
-            $sql = "SELECT user_id FROM task_users WHERE username = :username OR email = :email";
+            $sql = "SELECT user_id FROM task_users WHERE ";
+            // Check for username if it was changed
+            if ($username !== $_SESSION['username']) {
+                $sql .= "username = :username";
+            }
+            // Check for email if it was changed
+            if ($email !== $_SESSION['email']) {
+                // and an OR if both username and email are being changed
+                if ($username !== $_SESSION['username']) {
+                    $sql .= " OR ";
+                }
+                $sql .= "email = :email";
+            }
 
             // Prepare the SQL statement using PDO
             $stmt = $pdo->prepare($sql);
 
             // Bind user inputs to the query parameters
-            $stmt->bindParam(':username', $username);
-            $stmt->bindParam(':email', $email);
+            if ($username !== $_SESSION['username']) {
+                $stmt->bindParam(':username', $username);
+            }
+            if ($email !== $_SESSION['email']) {
+                $stmt->bindParam(':email', $email);
+            }
 
             // Execute the query
             $stmt->execute();
