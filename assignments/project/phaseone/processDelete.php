@@ -1,4 +1,6 @@
 <?php
+    require "./includes/auth.php";
+    require './includes/header.php';
     //Grab and ensure task_id is valid
     $taskId = $_GET['task_id'];
     if (empty($taskId) || $taskId <= 0) {
@@ -9,7 +11,7 @@
     }
 
     //connect to database
-    require "../includes/connect.php";
+    require "./includes/connect.php";
 
     //delete the task using a prepared statement
     $sql = "DELETE FROM active_tasks WHERE task_id = :taskId";
@@ -20,6 +22,7 @@
     $pdo = null;
     
     //confirmation message
+    echo "<main class='container mt-5' style='text-align: center;'>";
     echo "<h1>Deleted!</h1>
     <p>The task has been deleted from the database.</p>";
     echo "<p>You will be redirected to the homepage in 3 seconds.</p>

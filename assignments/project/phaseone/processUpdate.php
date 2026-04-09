@@ -1,4 +1,7 @@
 <?php   
+    require "./includes/auth.php";
+    require "./includes/header.php";
+    
     //Grab and ensure task_id is valid
     $taskId = $_GET['task_id'];
     if (empty($taskId) || $taskId <= 0) {
@@ -15,6 +18,7 @@
     $stmt = $pdo->prepare($sql);
     $stmt->bindParam(':taskName', $_POST['taskName']);
     $stmt->bindParam(':taskPriority', $_POST['taskPriority']);
+    // Validate task time input
     if ($_POST['taskTime'] <= 0) {
         echo "<p>Task time must be a positive integer. Please go back and enter a valid task time.</p>
         <p>You will be redirected to the homepage in 3 seconds.</p>
@@ -28,6 +32,7 @@
     $pdo = null;
 
     //confirmation message
+    echo "<main class='container mt-5' style='text-align: center;'>";
     echo "<h1>Updated!</h1>
     <p>The task has been updated in the database.</p>";
     echo "<p>You will be redirected to the homepage in 3 seconds.</p>

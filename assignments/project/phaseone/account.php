@@ -9,6 +9,7 @@
     }
 
 ?>
+<!-- form for updating account information -->
 <form method="post" enctype="multipart/form-data">
     <legend>Account Settings</legend>
     <label for="profileImage" class="form-label">Profile Image</label>
@@ -25,7 +26,7 @@
     <a href="./controls.php" class="btn btn-secondary">Back to homepage</a>
     <a href="./logout.php?delete=True" id="delete" class="btn btn-danger ms-2" >Delete Account</a>
     <script>
-        // Add a confirmation dialog before deleting the account
+        // Add a warning before deleting the account
         document.querySelector('a#delete').addEventListener('click', function(event) {
             if (!confirm('Are you sure you want to delete your account? This action cannot be undone.')) {
                 event.preventDefault();

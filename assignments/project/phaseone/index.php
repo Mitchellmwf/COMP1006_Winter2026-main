@@ -18,6 +18,7 @@
     echo "<p>No Tasks yet.</p>";} 
     ?>
 
+<!-- table to show all tasks with reduced information shown compared to controls -->
 <div class="table-responsive">
     <table class="table table-bordered table-striped align-middle">
         <thead>

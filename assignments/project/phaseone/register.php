@@ -21,13 +21,14 @@ $success = "";
 // This ensures the registration logic only runs when the form is submitted
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
-    // reCAPTCHA validation
+    // reCAPTCHA 
     $recaptchaSecret = '6Lc52q0sAAAAAIrTXwjPcZt5lB3pMOzabNOdPIdV';
     $recaptchaToken = $_POST['g-recaptcha-response'] ?? '';
     
     $recaptchaResponse = file_get_contents("https://www.google.com/recaptcha/api/siteverify?secret={$recaptchaSecret}&response={$recaptchaToken}");
     $recaptchaData = json_decode($recaptchaResponse, true);
 
+    // Check for reCAPTCHA success and score
     if (!$recaptchaData['success'] || $recaptchaData['score'] < 0.5) {
         $errors[] = "reCAPTCHA verification failed. Please try again.";
     }
@@ -199,7 +200,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             class="form-control mb-3"
             required
         >
-
         <!-- Confirm password input -->
         <label for="confirm_password" class="form-label">Confirm Password</label>
         <input
@@ -210,7 +210,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             required
         >
 
-        <!-- Submit button -->
+        <!-- Submit button with reCAPTCHA-->
         <button class="g-recaptcha btn btn-primary"
             data-sitekey="6Lc52q0sAAAAAAWnq8PbAmWmXuA2LZ4Ma9fhJ8Bx"
             data-callback="onSubmit"
@@ -219,6 +219,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         <!-- Link to login page -->
         <a href="./login.php" class="btn btn-secondary">Login Instead</a>
+        <!-- reCAPTCHA scripts -->
         <script src="https://www.google.com/recaptcha/api.js"></script>
         <script>
             function onSubmit(token) {

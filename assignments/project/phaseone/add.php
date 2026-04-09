@@ -1,7 +1,8 @@
 <?php
     require "./includes/header.php";
-
+    require "./includes/auth.php";
 ?>
+<!-- form for adding tasks -->
 <form action='./processAdd.php' method='post'>
     <legend>Create Task</legend>
     <label for='taskName'>Task name</label>

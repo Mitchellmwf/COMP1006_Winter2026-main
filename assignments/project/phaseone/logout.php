@@ -1,4 +1,5 @@
 <?php
+    require "./includes/auth.php";
 // logout.php
 // ------------------------------------------------------------
 // This page logs the user out by destroying their session

@@ -1,5 +1,6 @@
 <?php
-
+    require "./includes/auth.php";
+    require "./includes/header.php";
 
     //Sanitize taskName input
     $taskName = filter_input(INPUT_POST, 'taskName', FILTER_SANITIZE_SPECIAL_CHARS);;
@@ -53,6 +54,7 @@
     $pdo = null; 
 
     //confirmation message
+    echo "<main class='container mt-5' style='text-align: center;'>";
     echo "<h1>Confirmed!</h1>
     <p>Your task has been added to the database.</p>";
 

@@ -1,6 +1,8 @@
 
 <?php 
+    require "./includes/auth.php";
     require './includes/header.php';
+    
 
     //Grab and ensure task_id is valid
     $taskId = $_GET['task_id'];
